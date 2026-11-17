@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sabir7718.batterypc">
+
+
+    <uses-sdk 
+        android:minSdkVersion="26" 
+        android:targetSdkVersion="34" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher"
+        android:label="BatteryPC"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+
+        <activity 
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <receiver
+    android:name=".BatteryWidgetProvider"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        <action android:name="com.sabir7718.ACTION_SET_100" />
+        <action android:name="com.sabir7718.ACTION_RESET" />
+        <action android:name="com.sabir7718.ACTION_PLUS" />
+        <action android:name="com.sabir7718.ACTION_MINUS" />
+    </intent-filter>
+    <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/battery_widget_info" />
+</receiver>
+
+
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="com.sabir7718.batterypc.shizuku"
+            android:multiprocess="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+
+    </application>
+
+</manifest>
